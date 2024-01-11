@@ -44,5 +44,5 @@ export {
     gray_2,
     gray_3,
     gray_4,
-    gray_5
+    gray_5,
 };

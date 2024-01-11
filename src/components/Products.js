@@ -2,20 +2,12 @@ import React, { useRef, useState } from "react";
 
 import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-
-// import required modules
-import { EffectCards, Pagination } from "swiper/modules";
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-cards";
 
 import SwipperCustom from "./SwipperCustom";
+
 import {
     black_1,
     black_2,
@@ -68,7 +60,10 @@ const Products = () => {
 
     const myRef = useRef(null);
 
-    const executeScroll = () => myRef.current.scrollIntoView();
+    const executeScroll = () =>
+        myRef.current.scrollIntoView({
+            behavior: "smooth",
+        });
 
     if (1) {
         <AnimateSharedLayout>
@@ -78,10 +73,10 @@ const Products = () => {
                         <motion.div
                             layoutId={display + "div"}
                             onClick={() => handleOpen("")}
-                            className=" inset-0  absolute bg-black bg-opacity-20  "
+                            className=" inset-0  absolute bg-black bg-opacity-20 "
                         >
-                            <div className="  flex justify-center h-screen items-center">
-                                <div className="w-5/6">
+                            <div className=" flex justify-center h-screen items-center">
+                                <div className="w-full md:w-5/6">
                                     <SwipperCustom
                                         display={display}
                                         list={sendData[display]}
@@ -106,7 +101,7 @@ const Products = () => {
                             <motion.img
                                 layoutId={item + "image"}
                                 src={item}
-                                className="w-60 "
+                                className=" w-56  md:w-60 "
                                 alt=""
                             />
                         </motion.div>
@@ -121,9 +116,13 @@ const Products = () => {
             <div className="bg-[#c3c3c343] py-8 text-5xl font-semibold text-center  ">
                 Our products
             </div>
-            <div className="h-full flex flex-col md:flex-row gap-5 mt-5 justify-center  ">
+            <div className="h-full flex flex-col md:flex-row gap-5 md:mt-5 md:justify-center  ">
                 {details}
-                {content}
+                {
+                    <div className="grid grid-cols-2 md:grid-cols-4  place-items-center justify-center  md:place-items-start   ">
+                        {content}
+                    </div>
+                }
             </div>
         </div>
     );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { motion } from "framer-motion";
 
@@ -16,39 +16,43 @@ import "swiper/css";
 import "swiper/css/effect-cards";
 
 const SwipperCustom = ({ display, list }) => {
-    const swiperComponentCards = (
-        <Swiper effect={"cards"} grabCursor={true} modules={[EffectCards]}>
-            <SwiperSlide>
-                <img className="w-96 h-full" src={list[0]} />
-            </SwiperSlide>
-            <SwiperSlide>
-                <img className="w-96 h-full" src={list[0]} />
-            </SwiperSlide>
-            <SwiperSlide>
-                <img className="w-96 h-full" src={list[0]} />
-            </SwiperSlide>
-            <SwiperSlide>
-                <img className="w-96 h-full" src={list[0]} />
-            </SwiperSlide>
-            <SwiperSlide>
-                <img className="w-96 h-96" src={list[2]} />
-            </SwiperSlide>
-            <SwiperSlide>
-                <img className="w-96 h-96" src={list[0]} />
-            </SwiperSlide>
-            <SwiperSlide>
-                <img className="w-96 h-96" src={list[1]} />
-            </SwiperSlide>
-            <SwiperSlide>
-                <img className="w-96 h-96" src={list[2]} />
-            </SwiperSlide>
-        </Swiper>
-    );
+    const [screenWidth, setScreenHeight] = useState(() => {
+        return Math.floor(window.innerWidth / 300) - 1 || 1;
+    });
+
+    // const swiperComponentCards = (
+    //     <Swiper effect={"cards"} grabCursor={true} modules={[EffectCards]}>
+    //         <SwiperSlide>
+    //             <img className="w-96 h-full" src={list[0]} />
+    //         </SwiperSlide>
+    //         <SwiperSlide>
+    //             <img className="w-96 h-full" src={list[0]} />
+    //         </SwiperSlide>
+    //         <SwiperSlide>
+    //             <img className="w-96 h-full" src={list[0]} />
+    //         </SwiperSlide>
+    //         <SwiperSlide>
+    //             <img className="w-96 h-full" src={list[0]} />
+    //         </SwiperSlide>
+    //         <SwiperSlide>
+    //             <img className="w-96 h-96" src={list[2]} />
+    //         </SwiperSlide>
+    //         <SwiperSlide>
+    //             <img className="w-96 h-96" src={list[0]} />
+    //         </SwiperSlide>
+    //         <SwiperSlide>
+    //             <img className="w-96 h-96" src={list[1]} />
+    //         </SwiperSlide>
+    //         <SwiperSlide>
+    //             <img className="w-96 h-96" src={list[2]} />
+    //         </SwiperSlide>
+    //     </Swiper>
+    // );
 
     const swiperComponentPages = (
         <>
             <Swiper
-                slidesPerView={3}
+                slidesPerView={screenWidth}
                 spaceBetween={0}
                 centeredSlides={true}
                 pagination={{ clickable: true }}
@@ -57,7 +61,7 @@ const SwipperCustom = ({ display, list }) => {
                 <SwiperSlide>
                     <motion.img
                         layoutId={display + "image"}
-                        className="w-96 h-full object-cover"
+                        className="w-full h-full object-cover"
                         src={display}
                     />
                 </SwiperSlide>
@@ -67,7 +71,7 @@ const SwipperCustom = ({ display, list }) => {
                         return (
                             <SwiperSlide>
                                 <img
-                                    className="w-96 h-full object-cover"
+                                    className="w-full h-full object-cover"
                                     src={item}
                                 />
                             </SwiperSlide>
